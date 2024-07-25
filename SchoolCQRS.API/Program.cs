@@ -1,4 +1,7 @@
 
+using SchoolCQRS.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace SchoolCQRS.API
 {
     public class Program
@@ -13,6 +16,11 @@ namespace SchoolCQRS.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<AppDBContext>(opt =>
+            {
+                opt.UseSqlServer(builder.Configuration.GetConnectionString("schoolConnectionString"));
+            });
 
             var app = builder.Build();
 
