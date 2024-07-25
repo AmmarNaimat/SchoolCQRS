@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolCQRS.Infrastructure.Data
+namespace SchoolCQRS.Infrastructure.Context
 {
     public class AppDBContext: DbContext
     {
