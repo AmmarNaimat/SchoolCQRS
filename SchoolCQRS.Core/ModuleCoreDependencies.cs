@@ -11,6 +11,7 @@ namespace SchoolCQRS.Core
         public static IServiceCollection AddCoreDependencies(this IServiceCollection services)
         {
             services.AddMediatR(med => med.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly())).AddSingleton<GetStudentsQuery>();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }
     }
