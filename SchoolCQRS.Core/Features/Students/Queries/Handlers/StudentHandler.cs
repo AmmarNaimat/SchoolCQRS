@@ -1,5 +1,8 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
+using SchoolCQRS.Core.Bases;
 using SchoolCQRS.Core.Features.Students.Queries.Models;
+using SchoolCQRS.Core.Features.Students.Queries.Responses;
 using SchoolCQRS.Data.Entities;
 using SchoolCQRS.Service.Interfaces;
 using System;
@@ -10,17 +13,20 @@ using System.Threading.Tasks;
 
 namespace SchoolCQRS.Core.Features.Students.Queries.Handlers
 {
-    public class StudentHandler : IRequestHandler<GetStudentsQuery, List<Student>>
+    public class StudentHandler :ResponseHandler, IRequestHandler<GetStudentsQuery,Response<List<GetStudentsResponse>>>
     {
         private readonly IStudentService _studentService;
-
-        public StudentHandler(IStudentService studentService)
+        private readonly IMapper _mapper;
+        public StudentHandler(IStudentService studentService, IMapper mapper)
         {
             _studentService = studentService;
+            _mapper = mapper;
         }
-        public async Task<List<Student>> Handle(GetStudentsQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<GetStudentsResponse>>> Handle(GetStudentsQuery request, CancellationToken cancellationToken)
         {
-            return await _studentService.GetStudentsAsync();
+            List<Student> students = await _studentService.GetStudentsAsync();
+            List<GetStudentsResponse> studentMapper = _mapper.Map<List<GetStudentsResponse>>(students);
+            return Success(studentMapper);
         }
     }
 }

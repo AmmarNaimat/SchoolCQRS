@@ -20,7 +20,7 @@ namespace SchoolCQRS.Infrastructure.Repository
         }
         public async Task<List<Student>> GetStudentsAsync()
         {
-            return await _appDBContext.students.ToListAsync();
+            return await _appDBContext.students.Include(std => std.Department).ToListAsync();
         }
     }
 }
