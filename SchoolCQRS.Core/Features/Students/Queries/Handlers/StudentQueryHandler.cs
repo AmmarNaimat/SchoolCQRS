@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace SchoolCQRS.Core.Features.Students.Queries.Handlers
 {
-    public class StudentHandler :ResponseHandler, IRequestHandler<GetStudentsQuery,Response<List<GetStudentsResponse>>>
+    public class StudentQueryHandler :ResponseHandler, IRequestHandler<GetStudentsQuery,Response<List<GetStudentsResponse>>>
     {
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
-        public StudentHandler(IStudentService studentService, IMapper mapper)
+        public StudentQueryHandler(IStudentService studentService, IMapper mapper)
         {
             _studentService = studentService;
             _mapper = mapper;
