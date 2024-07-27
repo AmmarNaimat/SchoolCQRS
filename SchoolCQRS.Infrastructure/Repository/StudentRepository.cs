@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolCQRS.Data.Entities;
 using SchoolCQRS.Infrastructure.Context;
+using SchoolCQRS.Infrastructure.InfrastructureBases;
 using SchoolCQRS.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace SchoolCQRS.Infrastructure.Repository
 {
-    public class StudentRepository : IStudentRepository
+    public class StudentRepository : GenericRepository<Student>, IStudentRepository
     {
-        private readonly AppDBContext _appDBContext;
+        private readonly DbSet<Student> _students;
 
-        public StudentRepository(AppDBContext appDBContext)
+        public StudentRepository(AppDBContext appDBContext): base(appDBContext)
         {
-            _appDBContext = appDBContext;
+            _students = appDBContext.Set<Student>();
         }
         public async Task<List<Student>> GetStudentsAsync()
         {
-            return await _appDBContext.students.Include(std => std.Department).ToListAsync();
+            return await _students.Include(std => std.Department).ToListAsync();
         }
     }
 }

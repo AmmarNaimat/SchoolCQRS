@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SchoolCQRS.Core.Features.Students.Queries.Models;
-using SchoolCQRS.Service.Implementation;
-using SchoolCQRS.Service.Interfaces;
 using System.Reflection;
 
 namespace SchoolCQRS.Core
