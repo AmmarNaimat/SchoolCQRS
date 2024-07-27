@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SchoolCQRS.Data\SchoolCQRS.Data.csproj" />
-    <ProjectReference Include="..\SchoolCQRS.Infrastructure\SchoolCQRS.Infrastructure.csproj" />
     <ProjectReference Include="..\SchoolCQRS.Service\SchoolCQRS.Service.csproj" />
   </ItemGroup>
 

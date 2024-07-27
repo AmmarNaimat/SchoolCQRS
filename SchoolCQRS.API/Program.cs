@@ -25,7 +25,9 @@ namespace SchoolCQRS.API
             {
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("schoolConnectionString"));
             });
-            builder.Services.AddInfrastructureDependencies().AddServiceDependencies().AddCoreDependencies();
+            builder.Services.AddInfrastructureDependencies()
+                .AddServiceDependencies()
+                .AddCoreDependencies();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
