@@ -10,5 +10,6 @@ namespace SchoolCQRS.Service.Interfaces
     public interface IStudentService
     {
         public Task<List<Student>> GetStudentsAsync();
+        public Task<Student> GetStudentByIdAsync(int id);
     }
 }

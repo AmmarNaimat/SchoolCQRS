@@ -25,7 +25,8 @@ namespace SchoolCQRS.API
             {
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("schoolConnectionString"));
             });
-            builder.Services.AddInfrastructureDependencies()
+            builder.Services
+                .AddInfrastructureDependencies()
                 .AddServiceDependencies()
                 .AddCoreDependencies();
             var app = builder.Build();
