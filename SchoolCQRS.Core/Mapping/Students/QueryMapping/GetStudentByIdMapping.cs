@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace SchoolCQRS.Core.Mapping.Students
 {
-    public partial class StudentProfile:Profile
+    public partial class StudentProfile : Profile
     {
-        public StudentProfile()
+        public void GetStudentMapping()
         {
-            GetStudentsMapping();
-            GetStudentMapping();
+            CreateMap<Student, GetStudentResponse>()
+                .ForMember(des => des.DepartmentName, opt => opt.MapFrom(src => src.Department.DName));
         }
     }
 }
