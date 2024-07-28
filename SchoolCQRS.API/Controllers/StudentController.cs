@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolCQRS.Core.Features.Students.Queries.Models;
 using SchoolCQRS.Core.Features.Students.StudentFactoryInterfaces;
+using SchoolCQRS.Data.AppMetaData;
 
 namespace SchoolCQRS.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class StudentController : ControllerBase
     {
@@ -21,14 +21,14 @@ namespace SchoolCQRS.API.Controllers
             _studentFactory = studentFactory;
         }
 
-        [HttpGet("/Student/GetStudents")]
+        [HttpGet(Router.StudentRouting.List)]
         public async Task<IActionResult> GetStudents()
         {
             var response = await _mediator.Send(_getStudentsQuery);
             return Ok(response);
         }
 
-        [HttpGet("/Student/{id}")]
+        [HttpGet(Router.StudentRouting.GetById)]
         public async Task<IActionResult> GetStudentById([FromRoute] int id)
         {
             var query = _studentFactory.CreateGetStudentByIdQuery(id);
